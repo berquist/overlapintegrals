@@ -39,6 +39,7 @@ def test_binomial_prefactor():
 
 def test_overlap1d():
     assert overlapintegrals.overlap1d(l1=1, l2=1, pax=0.1, pbx=0.2, gamma=1.0) == approx(0.52, 1e-5)
+    assert overlapintegrals.overlap1d(l1=3, l2=1, pax=0.1, pbx=0.2, gamma=1.0) == approx(0.7952, 1e-5)
 
 
 def test_tho66():
