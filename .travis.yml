@@ -1,0 +1,12 @@
+sudo: false
+
+matrix:
+  include:
+    - language: julia
+      julia: 1.1
+      before_script:
+        - cd julia
+    - language: python
+      python: 3.7
+      before_script:
+        - cd python
