@@ -4,7 +4,7 @@ set -v
 
 # C
 (
-    cd gcc
+    cd c
 )
 # Clojure
 (
@@ -12,7 +12,7 @@ set -v
 )
 # C++
 (
-    cd g++
+    cd c++
 )
 # Go
 (
@@ -34,6 +34,7 @@ set -v
 # Nim
 (
     cd nim
+    nim c -r overlapintegrals.nim
 )
 # Python
 (
