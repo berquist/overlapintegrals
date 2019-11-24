@@ -10,6 +10,8 @@ matrix:
       before_script:
         - cd julia/OverlapIntegrals
 
+    # Cribbed from
+    # https://github.com/mratsim/Arraymancer/blob/407cae439d5f1f76431251c28a7e6fc9652444e3/.travis.yml#L66
     - language: c # nim
       before_install:
         - export CHANNEL=stable
@@ -32,6 +34,8 @@ matrix:
       script:
         - python -m pytest
 
+    # Cribbed from
+    # https://github.com/greghendershott/travis-racket/blob/2945afacf99c9109ee79d92f6f04c08b27be22fe/.travis.yml#L63
     - language: c # racket
       before_install:
         - export RACKET_VERSION=7.5
