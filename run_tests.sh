@@ -45,7 +45,7 @@ set -v
 # Racket
 (
     cd racket
-    racket overlapintegrals-test.rkt
+    raco test .
 )
 # Ruby
 (
