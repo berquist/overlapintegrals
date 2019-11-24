@@ -25,7 +25,8 @@ set -v
 # Julia
 (
     cd julia
-    julia test_overlapintegrals.jl
+    cd OverlapIntegrals
+    julia --project -e "using Pkg; Pkg.test()"
 )
 # Kotlin
 (
