@@ -2,11 +2,28 @@ sudo: false
 
 matrix:
   include:
+
     # - language: common-lisp
+
     - language: julia
       julia: 1.1
       before_script:
         - cd julia/OverlapIntegrals
+
+    - language: c # nim
+      before_install:
+        - export CHANNEL=stable
+        - export CHOOSENIM_NO_ANALYTICS=1
+        - curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+        - sh init.sh -y
+        - export PATH=~/.nimble/bin:$PATH
+        - echo "export PATH=~/.nimble/bin:$PATH" >> ~/.profile
+        - choosenim $CHANNEL
+      before_script:
+        - cd nim
+      script:
+        - nim c -r overlapintegrals.nim
+
     - language: python
       python: 3.7
       before_install:
@@ -14,6 +31,7 @@ matrix:
         - pip install -r requirements.txt
       script:
         - python -m pytest
+
     - language: c # racket
       before_install:
         - export RACKET_VERSION=7.5
@@ -27,4 +45,5 @@ matrix:
         - cd racket
       script:
         - raco test .
+
     # - language: rust
