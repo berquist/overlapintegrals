@@ -17,6 +17,7 @@ matrix:
     - language: c # racket
       before_install:
         - export RACKET_VERSION=7.5
+        - export RACKET_DIR=~/racket
         # Repo history and other branches aren't useful here, so do a shallow
         # clone to only download the tip of the master branch of the repo.
         - git clone --depth 1 https://github.com/greghendershott/travis-racket.git
