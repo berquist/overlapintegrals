@@ -1,9 +1,20 @@
 sudo: false
+dist: bionic
 
 matrix:
   include:
 
-    # - language: common-lisp
+    - language: common-lisp
+      addons:
+        apt:
+          packages:
+            - clisp
+            - sbcl
+      before_script:
+        - cd cl
+      script:
+        - clisp overlapintegrals.lisp
+        - sbcl --script overlapintegrals.lisp
 
     - language: julia
       julia: 1.1

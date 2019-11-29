@@ -10,6 +10,12 @@ set -v
 (
     cd clojure
 )
+# Common Lisp
+(
+    cd cl
+    clisp overlapintegrals.lisp
+    sbcl --script overlapintegrals.lisp
+)
 # C++
 (
     cd c++
