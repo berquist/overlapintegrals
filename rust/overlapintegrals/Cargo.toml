@@ -1,0 +1,10 @@
+[package]
+name = "overlapintegrals"
+version = "0.1.0"
+authors = ["Eric Berquist <eric.berquist@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+approx = "*"
+num-integer = "*"
+num-traits = "*"

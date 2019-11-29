@@ -50,4 +50,8 @@ matrix:
       script:
         - raco test .
 
-    # - language: rust
+    - language: rust
+      rust: stable
+      cache: cargo
+      before_install:
+        cd rust/overlapintegrals

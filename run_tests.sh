@@ -53,7 +53,7 @@ set -v
 )
 # Rust
 (
-    cd rust
+    cd rust/overlapintegrals
     cargo test
 )
 
