@@ -1,5 +1,5 @@
-// #[macro_use]
-// extern crate approx;
+#[macro_use]
+extern crate approx;
 use num_integer;
 use std::f64::consts;
 
@@ -72,7 +72,7 @@ mod tests {
 
     #[test]
     fn test_dist2() {
-        assert_eq!(dist2(0.5, 0.6, 0.7, 0.8, 0.9, 1.0), 0.27);
+        assert_abs_diff_eq!(dist2(0.5, 0.6, 0.7, 0.8, 0.9, 1.0), 0.27);
     }
 
     #[test]
@@ -94,16 +94,16 @@ mod tests {
 
     #[test]
     fn test_binomial_prefactor() {
-        assert_eq!(binomial_prefactor(1, 1, 1, 0.1, 0.2), 0.3);
-        assert_eq!(binomial_prefactor(1, 1, 1, 0.3, 0.4), 0.7);
-        assert_eq!(binomial_prefactor(1, 3, 1, 0.1, 0.2), 0.007);
-        assert_eq!(binomial_prefactor(2, 3, 1, 0.1, 0.2), 0.09);
+        assert_abs_diff_eq!(binomial_prefactor(1, 1, 1, 0.1, 0.2), 0.3);
+        assert_abs_diff_eq!(binomial_prefactor(1, 1, 1, 0.3, 0.4), 0.7);
+        assert_abs_diff_eq!(binomial_prefactor(1, 3, 1, 0.1, 0.2), 0.007);
+        assert_abs_diff_eq!(binomial_prefactor(2, 3, 1, 0.1, 0.2), 0.09);
     }
 
     #[test]
     fn test_overlap1d() {
-        assert_eq!(overlap1d(1, 1, 0.1, 0.2, 1.0), 0.52);
-        assert_eq!(overlap1d(3, 1, 0.1, 0.2, 1.0), 0.7952);
+        assert_abs_diff_eq!(overlap1d(1, 1, 0.1, 0.2, 1.0), 0.52, epsilon = 1.0e-40);
+        assert_abs_diff_eq!(overlap1d(3, 1, 0.1, 0.2, 1.0), 0.7952, epsilon = 1.0e-40);
     }
 
     #[test]
@@ -112,21 +112,21 @@ mod tests {
         let zb = 2.8;
         let ra = (0.0, 0.0, 0.0);
         let rb = (0.5, 0.8, -0.2);
-        assert_eq!(
+        assert_abs_diff_eq!(
             tho66(za, zb, ra, rb, (0, 0, 0), (0, 0, 0)),
-            0.20373275913014607,
+            0.20373275913014607
         );
-        assert_eq!(
+        assert_abs_diff_eq!(
             tho66(za, zb, ra, rb, (1, 0, 0), (0, 0, 0)),
-            0.062005622343957505,
+            0.062005622343957505
         );
-        assert_eq!(
+        assert_abs_diff_eq!(
             tho66(za, zb, ra, rb, (1, 1, 0), (1, 1, 0)),
-            -0.00043801221837779696,
+            -0.00043801221837779696
         );
-        assert_eq!(
+        assert_abs_diff_eq!(
             tho66(za, zb, ra, rb, (2, 1, 0), (1, 1, 0)),
-            -0.0002385994651113168,
+            -0.0002385994651113168
         );
     }
 }
