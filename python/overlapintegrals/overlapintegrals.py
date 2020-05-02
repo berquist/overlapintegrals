@@ -57,14 +57,13 @@ def tho66(
     gamma = alpha1 + alpha2
     xa, ya, za = ra
     xb, yb, zb = rb
-    rab2 = dist2(xa, ya, za, xb, yb, zb)
     l1, m1, n1 = la
     l2, m2, n2 = lb
     xp = product_center_1d(alpha1, xa, alpha2, xb)
     yp = product_center_1d(alpha1, ya, alpha2, yb)
     zp = product_center_1d(alpha1, za, alpha2, zb)
 
-    pre = exp(-alpha1 * alpha2 * rab2 / gamma) * (pi / gamma) ** 1.5
+    pre = exp(-alpha1 * alpha2 * dist2(xa, ya, za, xb, yb, zb) / gamma) * (pi / gamma) ** 1.5
 
     wx = overlap1d(l1, l2, xp - xa, xp - xb, gamma)
     wy = overlap1d(m1, m2, yp - ya, yp - yb, gamma)
