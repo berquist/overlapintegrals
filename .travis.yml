@@ -17,6 +17,11 @@ matrix:
         - sbcl --script overlapintegrals.lisp
 
     - language: cpp
+      addons:
+        apt:
+          packages:
+            - catch
+            - libboost-all-dev
       before_script:
         - cd cpp
         - mkdir -p build
