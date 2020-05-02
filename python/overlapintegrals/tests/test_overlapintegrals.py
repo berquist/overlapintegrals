@@ -19,6 +19,8 @@ def test_product_center_1d():
 
 
 def test_fact2():
+    # yes I know this is incorrect
+    assert overlapintegrals.fact2(-1) == 1
     # this one is by definition
     assert overlapintegrals.fact2(0) == 1
     assert overlapintegrals.fact2(1) == 1
