@@ -16,6 +16,16 @@ matrix:
         - clisp overlapintegrals.lisp
         - sbcl --script overlapintegrals.lisp
 
+    - language: cpp
+      before_script:
+        - cd cpp
+        - mkdir -p build
+        - cd build
+        - cmake ..
+        - make
+      script:
+        - ./main.x
+
     - language: julia
       julia: 1.1
       before_script:
