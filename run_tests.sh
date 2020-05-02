@@ -18,7 +18,12 @@ set -v
 )
 # C++
 (
-    cd c++
+    cd cpp
+    mkdir -p build
+    cd build
+    cmake ..
+    make
+    ./main.x
 )
 # Go
 (
