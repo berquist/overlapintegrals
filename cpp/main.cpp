@@ -6,7 +6,6 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
-
 double dist2(double xa, double ya, double za, double xb, double yb, double zb) {
     const double dx = xa - xb;
     const double dy = ya - yb;
@@ -40,8 +39,6 @@ double binomial_prefactor(long long s, long long ia, long long ib, double xpa, d
     double sum = 0.0;
     for (long long t = 0; t < s + 1; t++) {
         if (((s - ia) <= t) && (t <= ib)) {
-            // std::cout << "(ia, s - t): (" << ia << ", " << s - t << ")" << std::endl;
-            // std::cout << "(ib, t): (" << ib << ", " << t << ")" << std::endl;
             sum += binomial(ia, s - t) * binomial(ib, t) * pow(xpa, ia - s + t) * pow(xpb, ib - t);
         }
     }
@@ -51,30 +48,32 @@ double binomial_prefactor(long long s, long long ia, long long ib, double xpa, d
 double overlap1d(long long l1, long long l2, double pax, double pbx, double gamma) {
     double sum = 0.0;
     const long long lim = 1 + floor(0.5 * (l1 + l2));
-    // std::cout << "lim: " << lim << std::endl;
     for (long long i = 0; i < lim; i++) {
-        const long long arg = 2 * i - 1;
-        // std::cout << "2 * i - 1: " << arg << std::endl;
-        // if (arg >= 0) {
-            const double p1 = binomial_prefactor(2 * i, l1, l2, pax, pbx);
-            const double p2 = fact2(2 * i - 1);
-            const double p3 = pow(2 * gamma, i);
-            // std::cout << p1 << " " << p2 << " " << p3 << std::endl;
-            const double term = p1 * p2 / p3;
-            sum += term;
-        // }
+        sum += binomial_prefactor(2 * i, l1, l2, pax, pbx) * fact2(2 * i - 1) / pow(2 * gamma, i);
     }
     return sum;
 }
 
-double tho66(double alpha1, double alpha2, double xa, double ya, double za,
-             double xb, double yb, double zb, long long l1, long long m1, long long n1,
-             long long l2, long long m2, long long n2) {
+double tho66(double alpha1,
+             double alpha2,
+             double xa,
+             double ya,
+             double za,
+             double xb,
+             double yb,
+             double zb,
+             long long l1,
+             long long m1,
+             long long n1,
+             long long l2,
+             long long m2,
+             long long n2) {
     const double gamma = alpha1 + alpha2;
     const double xp = product_center_1d(alpha1, xa, alpha2, xb);
     const double yp = product_center_1d(alpha1, ya, alpha2, yb);
     const double zp = product_center_1d(alpha1, za, alpha2, zb);
-    const double pre = exp(-alpha1 * alpha2 * dist2(xa, ya, za, xb, yb, zb) / gamma) * pow(M_PI / gamma, 1.5);
+    const double pre =
+        exp(-alpha1 * alpha2 * dist2(xa, ya, za, xb, yb, zb) / gamma) * pow(M_PI / gamma, 1.5);
     const double wx = overlap1d(l1, l2, xp - xa, xp - xb, gamma);
     const double wy = overlap1d(m1, m2, yp - ya, yp - yb, gamma);
     const double wz = overlap1d(n1, n2, zp - za, zp - zb, gamma);
@@ -97,9 +96,7 @@ double tho66(double alpha1, double alpha2, double xa, double ya, double za,
 //     return 0;
 // }
 
-TEST_CASE("dist2", "dist2") {
-    REQUIRE(dist2(0.5, 0.6, 0.7, 0.8, 0.9, 1.0) == Approx(0.27));
-}
+TEST_CASE("dist2", "dist2") { REQUIRE(dist2(0.5, 0.6, 0.7, 0.8, 0.9, 1.0) == Approx(0.27)); }
 
 TEST_CASE("product_center_1d", "product_center_1d") {
     REQUIRE(product_center_1d(1.8, 0.0, 2.8, 0.5) == Approx(0.304348));
