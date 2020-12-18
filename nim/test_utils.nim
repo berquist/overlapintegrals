@@ -1,5 +1,5 @@
-## Stolen from pytest's ApproxScalar.
 proc approx*(actual, expected: SomeNumber, allowed_rel_diff: SomeNumber = 1e-6, allowed_abs_diff: SomeNumber = 1e-12): bool =
+  ## Stolen from pytest's ApproxScalar.
   # Short-circuit exact equality.
   if actual == expected:
     return true
