@@ -24,7 +24,7 @@ func overlap1d(l1, l2: SomeInteger, pax, pbx, gamma: SomeFloat): SomeFloat =
   for i in 0..int(floor(0.5 * float(l1 + l2))):
     result += binomialPrefactor(2 * i, l1, l2, pax, pbx) * float(fact2(2 * i - 1)) / pow(2 * gamma, float(i))
 
-func tho66(alpha1, alpha2: SomeFloat, ra, rb: (SomeFloat, SomeFloat, SomeFloat), la, lb: (SomeInteger, SomeInteger, SomeInteger)): SomeFloat =
+func tho66*(alpha1, alpha2: SomeFloat, ra, rb: (SomeFloat, SomeFloat, SomeFloat), la, lb: (SomeInteger, SomeInteger, SomeInteger)): SomeFloat =
   let
     gamma = alpha1 + alpha2
     rab2 = dist2(ra[0], ra[1], ra[2], rb[0], rb[1], rb[2])
