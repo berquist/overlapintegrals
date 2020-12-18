@@ -17,7 +17,7 @@ function binomial_prefactor(s::Integer, ia::Integer, ib::Integer, xpa::Number, x
             acc += binomial(ia, s - t) * binomial(ib, t) * (xpa ^ (ia - s + t)) * (xpb ^ (ib - t))
         end
     end
-    return acc
+    acc
 end
 
 
@@ -26,15 +26,15 @@ function overlap1d(l1::Integer, l2::Integer, pax::Number, pbx::Number, gamma::Nu
     for i = 0 : 1 + floor(0.5 * (l1 + l2))
         acc += binomial_prefactor(Integer(2 * i), l1, l2, pax, pbx) * fact2(2 * i - 1) / ((2 * gamma) ^ i)
     end
-    return acc
+    acc
 end
 
 function dist2(xa, ya, za, xb, yb, zb)
-    return (xa - xb) * (xa - xb) + (ya - yb) * (ya - yb) + (za - zb) * (za - zb)
+    (xa - xb) * (xa - xb) + (ya - yb) * (ya - yb) + (za - zb) * (za - zb)
 end
 
 function product_center_1d(za, xa, zb, xb)
-    return ((za * xa) + (zb * xb)) / (za + zb)
+    ((za * xa) + (zb * xb)) / (za + zb)
 end
 
 function tho66(alpha1::Number, alpha2::Number, ra, rb, la, lb)
@@ -53,7 +53,8 @@ function tho66(alpha1::Number, alpha2::Number, ra, rb, la, lb)
     wx = overlap1d(l1, l2, xp - xa, xp - xb, gamma)
     wy = overlap1d(m1, m2, yp - ya, yp - yb, gamma)
     wz = overlap1d(n1, n2, zp - za, zp - zb, gamma)
-    return pre * wx * wy * wz
+
+    pre * wx * wy * wz
 end
 
-end # module
+end
