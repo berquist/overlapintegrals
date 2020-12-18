@@ -46,7 +46,7 @@ set -v
 # Nim
 (
     cd nim
-    nim c -r overlapintegrals.nim
+    nim r -d:release overlapintegrals.nim
 )
 # Python
 (
